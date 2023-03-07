@@ -48,9 +48,11 @@ let beliBakso = (uang) => {
 
 const duitBambang = 12000
 
-let hasilBambangBeliBakso = beliBakso(duitBambang)
-
-hasilBambangBeliBakso
+beliBakso(duitBambang)
+  .then((res) => {
+    // throw new Error('wahh gagal proses nih')
+    return res.name
+  })
   .then((res) => {
     console.log(res, `<=================== res ==================`);
   })
