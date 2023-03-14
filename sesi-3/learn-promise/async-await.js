@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 
-const userUrl = 'https://jsonplasdasdaceholder.typicode.com/users'
+const userUrl = 'https://jsonplaceholder.typicode.com/users'
 
 const fetchUsers = async () => {
   try {
@@ -20,3 +20,8 @@ fetchUsers()
 const res = 1 + 2
 console.log(res, `<=================== res ==================`);
 
+(async () => {
+ const res = await fetch('https://jsonplaceholder.typicode.com/users?id=2')
+ const result = await res.json()
+ console.log(result, `<=================== IIFE ==================`); 
+})()
