@@ -1,10 +1,11 @@
 import React from 'react'
+import Title from '../atoms/Title'
 
 class Counter extends React.Component {
   constructor() {
     super()
     this.state = {
-      title: 'My Counter',
+      title: 'Counter',
       num: 10
     }
     // this.setNum = this.setNum.bind(this) -> https://reactjs.org/docs/faq-functions.html
@@ -14,21 +15,26 @@ class Counter extends React.Component {
     return this.state.title
   }
   
-  setNum = () => {
-    console.log( `<=================== set num triggered ==================`);
+  decrement = () => {
+    this.setState({
+      num: this.state.num - 1
+    })
+  }
+  
+  increment = () => {
     this.setState({
       num: this.state.num + 1
     })
   }
   
   render() {
-    console.log(this.state, `<=================== render ==================`);
     return (
-      <div>
-        <h1>{this.getTitle()}</h1>
+      <>
+        <Title name={this.getTitle()}/>
         <div>{this.state.num}</div>
-        <button onClick={this.setNum}>+</button>
-      </div>
+        <button onClick={this.decrement}>-</button>
+        <button onClick={this.increment}>+</button>
+      </>
     )
   }
 }
