@@ -1,0 +1,1 @@
+export const Title = ({ title }) => <h1 style={{ color: 'green' }}>{title}</h1>
