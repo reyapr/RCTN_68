@@ -3,6 +3,7 @@ import './App.css';
 import Counter from './components/Counter';
 import React from 'react';
 import Counter2 from './components/Counter2';
+import Users from './components/Users';
 
 class App extends React.Component {
   constructor() {
@@ -10,11 +11,13 @@ class App extends React.Component {
     // console.log( `%c <=================== constructor ==================>`, 'color: #4287f5');
     this.state = {
       num1: 0,
-      num2: 0
+      num2: 0,
+      isUserShow: false
     }
   }
   
   componentDidMount = () => {
+    
     // console.log(`%c <=================== did mount ==================>`, 'color: #39ad92');
   }
   
@@ -34,10 +37,21 @@ class App extends React.Component {
     })
   }
   
+  showUser = () => {
+    this.setState({
+      isUserShow: !this.state.isUserShow
+    })
+  }
+  
   render() {
     // console.log( `%c <=================== render  ==================`, 'color: #42d4f5');
     return (
       <div className="App">
+        <button onClick={this.showUser}>{this.state.isUserShow? 'hide' : 'show'}</button>
+        {
+          this.state.isUserShow && <Users/>
+        }
+        <hr />
         <Counter num={this.state.num1} updateNum={this.updateNum1}/>
         <hr />
         <Counter2 num={this.state.num2} updateNum={this.updateNum2}/>

@@ -6,8 +6,6 @@ class Counter2 extends React.Component {
     /**
      * jika props num-nya berubah, makan component harus diupdate
      */
-    console.log(this.props, `<=================== this.props.num ==================`);
-    console.log(nextProps, `<=================== nextProps ==================`);
     if(this.props.num !== nextProps.num) {
       return true
     }
