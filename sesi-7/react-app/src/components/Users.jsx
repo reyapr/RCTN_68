@@ -11,6 +11,10 @@ class Users extends React.Component {
     }
   }
   
+  componentWillUnmount() {
+    localStorage.removeItem('users')
+  }
+  
   componentDidMount() {
     if(localStorage.getItem('users')) {
       this.setState({
@@ -29,7 +33,6 @@ class Users extends React.Component {
         console.log(err, `<=================== err ==================`);
       })
     }
-    
   }
   
   componentDidUpdate(nextProps, nextState) {
@@ -38,8 +41,13 @@ class Users extends React.Component {
       .then(res => res.json())
       .then(res => {
         this.setState({
-          user: res[0],
-          isUserLoading: false
+          user: {
+            ...res[0],
+            address: {
+              street: 0
+            }
+          },
+          isUserLoading: false,
         })
       })
       .catch(err => {
@@ -77,7 +85,7 @@ class Users extends React.Component {
                 Phone: {this.state.user.phone}
               </div>
               <div>
-                Street: {this.state.user.address.street}
+                Street: {this.state.user.address.street.replace('')}
               </div>
             </>
           }

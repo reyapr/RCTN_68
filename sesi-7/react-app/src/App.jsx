@@ -4,6 +4,8 @@ import Counter from './components/Counter';
 import React from 'react';
 import Counter2 from './components/Counter2';
 import Users from './components/Users';
+import ErrorBoundary from './components/ErrorBoundary';
+import UsersFn from './components/UsersFn';
 
 class App extends React.Component {
   constructor() {
@@ -12,7 +14,7 @@ class App extends React.Component {
     this.state = {
       num1: 0,
       num2: 0,
-      isUserShow: false
+      isUserShow: true
     }
   }
   
@@ -46,16 +48,23 @@ class App extends React.Component {
   render() {
     // console.log( `%c <=================== render  ==================`, 'color: #42d4f5');
     return (
-      <div className="App">
-        <button onClick={this.showUser}>{this.state.isUserShow? 'hide' : 'show'}</button>
-        {
-          this.state.isUserShow && <Users/>
-        }
-        <hr />
-        <Counter num={this.state.num1} updateNum={this.updateNum1}/>
-        <hr />
-        <Counter2 num={this.state.num2} updateNum={this.updateNum2}/>
-      </div>
+      <ErrorBoundary>
+        <div className="App">
+          <button onClick={this.showUser}>{this.state.isUserShow? 'hide' : 'show'}</button>
+          {
+            this.state.isUserShow && <Users/>
+          }
+          <hr />
+          {
+            this.state.isUserShow && <UsersFn/>
+          }
+          <hr />
+          <Counter num={this.state.num1} updateNum={this.updateNum1}/>
+          <hr />
+          <Counter2 num={this.state.num2} updateNum={this.updateNum2}/>
+        </div>
+      </ErrorBoundary>
+     
     );
   }
 }
