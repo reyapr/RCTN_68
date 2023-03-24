@@ -5,10 +5,10 @@ const defaultTextCounterColor = { color: 'goldenrod'}
 
 const Counter = () => {
   return (
-    <div className={styles.default_bg}>
+    <div className={`${styles.default_bg} py-2`} >
       <h3 style={defaultTextCounterColor}>0</h3>
-      <button style={defaultTextCounterColor}>+</button>
-      <button style={defaultTextCounterColor}>-</button>
+      <button className='btn btn-success me-2'>+</button>
+      <button className='btn btn-danger'>-</button>
     </div>
   )  
 }
